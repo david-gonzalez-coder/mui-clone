@@ -3,7 +3,7 @@ import { useState } from 'react'
 import {Backdrop, Snackbar, Alert, Skeleton} from '../lib/feedBack'
 import {Btn, Checkbox} from '../lib/inputs'
 import {Box, Input} from 'atomic-library-core'
-import {Avatar, AvatarGroup} from '../lib/dataDisplay'
+import {Avatar, AvatarGroup, Badge} from '../lib/dataDisplay'
 import {AiOutlineSearch} from 'react-icons/ai'
 import './App.css'
 const App = () => {
@@ -42,7 +42,9 @@ const App = () => {
         <Avatar>Dg</Avatar>
       </AvatarGroup>
       <Avatar alt="av" src="https://townsquare.edia/site/442/files/2013/08/avatar-poll.jpg?w=1200&h=0&zc=1&s=0&a=t&q=89"></Avatar>
-    
+      <Badge badgeContent="1" subType="success" fs="12px" r="-10px">
+        <AiOutlineSearch fontSize="2rem"/>
+      </Badge>
       
     </>
   )
