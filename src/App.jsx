@@ -3,7 +3,7 @@ import { useState } from 'react'
 import {Backdrop, Snackbar, Alert, Skeleton} from '../lib/feedBack'
 import {Btn, Checkbox} from '../lib/inputs'
 import {Box, Input} from 'atomic-library-core'
-import {Avatar, AvatarGroup, Badge} from '../lib/dataDisplay'
+import {Avatar, AvatarGroup, Badge, Chip} from '../lib/dataDisplay'
 import {AiOutlineSearch} from 'react-icons/ai'
 import './App.css'
 const App = () => {
@@ -32,7 +32,7 @@ const App = () => {
         <Skeleton />
         <Skeleton h="100px"/>
       </Box>
-      <Alert size="lg">hola</Alert>
+      <Alert type="smooth" fullRounded w="300px" onClose={()=> alert('hola')} >hola</Alert>
       <AvatarGroup max={5} >
         <Avatar>Dg</Avatar>
         <Avatar>Dg</Avatar>
@@ -45,7 +45,7 @@ const App = () => {
       <Badge badgeContent="1" subType="success" fs="12px" r="-10px">
         <AiOutlineSearch fontSize="2rem"/>
       </Badge>
-      
+      <Chip icon={<AiOutlineSearch />}  onClose={()=>alert('hola')}>hola</Chip>
     </>
   )
 }
