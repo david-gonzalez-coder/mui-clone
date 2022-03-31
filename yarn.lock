@@ -312,10 +312,10 @@ ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
-atomic-library-core@^1.3.4:
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/atomic-library-core/-/atomic-library-core-1.3.4.tgz#46a31a8de8b130d9d4d80064d7a86782077edec8"
-  integrity sha512-aqp/dop7RL5NnRmdgGhZIFPasQ+5IlfZzrFHPOdgf6jAucXTqBVeTVn2yTSZPxOdaRQsmQiQndZKSuCfD+q8oA==
+atomic-library-core@^1.3.5:
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/atomic-library-core/-/atomic-library-core-1.3.5.tgz#a515dfb0d8bf68ea231aea66f5d1c1a70978053c"
+  integrity sha512-8uqQmMF3uOHIywbhzCBdpAcYVf8IwDpmwCktbELr8P7RLIuv8t0EwQ9b3rn1B5YSjMg7tvTXdo43YRFUHgGOfw==
   dependencies:
     styled-components "^5.3.3"
 

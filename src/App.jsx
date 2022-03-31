@@ -3,7 +3,7 @@ import { useState } from 'react'
 import {Backdrop, Snackbar, Alert, Skeleton} from '../lib/feedBack'
 import {Btn, Checkbox} from '../lib/inputs'
 import {Box, Input} from 'atomic-library-core'
-import {Avatar, AvatarGroup, Badge, Chip} from '../lib/dataDisplay'
+import {Avatar, AvatarGroup, Badge, Chip, List} from '../lib/dataDisplay'
 import {AiOutlineSearch} from 'react-icons/ai'
 import './App.css'
 const App = () => {
@@ -33,10 +33,10 @@ const App = () => {
         <Skeleton h="100px"/>
       </Box>
       <Alert type="smooth" fullRounded w="300px" onClose={()=> alert('hola')} >hola</Alert>
-      <AvatarGroup max={5} >
-        <Avatar>Dg</Avatar>
-        <Avatar>Dg</Avatar>
-        <Avatar>Dg</Avatar>
+      <AvatarGroup max={3} >
+        <Avatar bg="orange">Dg</Avatar>
+        <Avatar bg="purple">Dg</Avatar>
+        <Avatar bg="green">Dg</Avatar>
         <Avatar>Dg</Avatar>
         <Avatar>Dg</Avatar>
         <Avatar>Dg</Avatar>
@@ -45,7 +45,15 @@ const App = () => {
       <Badge badgeContent="1" subType="success" fs="12px" r="-10px">
         <AiOutlineSearch fontSize="2rem"/>
       </Badge>
-      <Chip icon={<AiOutlineSearch />}  onClose={()=>alert('hola')}>hola</Chip>
+      <Chip >hola this</Chip>
+      <List 
+       fs="5rem"
+        elements={[
+          {display: <Avatar bg="orange">Dg</Avatar>, title: 'hola', content: 'this is content', onClose: () => alert('hola'), division: true},
+          {display: <AiOutlineSearch fontSize="1.5rem"/>, title: 'como estas'},
+          {display: 'hola'},
+        ]}
+      />
     </>
   )
 }
