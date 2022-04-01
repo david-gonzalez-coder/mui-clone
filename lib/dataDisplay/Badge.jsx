@@ -1,7 +1,7 @@
 import { Span, Box } from 'atomic-library-core'
-import { ThemeColors02 } from '../utils'
+import { ThemeColors2 } from 'atomic-library-core'
 
-let main = ThemeColors02.main
+let main = ThemeColors2.main
 
 const Badge = ({
   children,

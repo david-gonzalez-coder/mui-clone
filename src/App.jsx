@@ -1,14 +1,16 @@
 
 import { useState } from 'react'
 import {Backdrop, Snackbar, Alert, Skeleton} from '../lib/feedBack'
-import {Btn, Checkbox} from '../lib/inputs'
+import {Btn, Checkbox, ToggleBtnGroup} from '../lib/inputs'
 import {Box, Input} from 'atomic-library-core'
 import {Avatar, AvatarGroup, Badge, Chip, List, ContentItem} from '../lib/dataDisplay'
 import {AiOutlineSearch} from 'react-icons/ai'
+import {Accordion} from '../lib/surfaces'
+import {Collapse} from '../lib/utils'
 import './App.css'
 const App = () => {
   const [toggle, setToggle] = useState(false)
-  
+  const [toggleMenu, setToggleMenu] = useState('btn1')
   return (
     <>
     
@@ -61,19 +63,38 @@ const App = () => {
             content="September 14, 2016"
             action=":"
           />
-          <Box>
-            <img width="100%" src="https://mui.com/static/images/cards/paella.jpg" alt="" />
-          </Box>
+          <Box><img width="100%" src="https://mui.com/static/images/cards/paella.jpg" alt="" /></Box>
           <Box p="1rem">
             <p>Lorem ipsum, tempore maiores. Ducimus praesentium enim sed ipsam sapiente, ipsum totam architecto consectetur animi facere, aliquid blanditiis est sint.</p>
-          </Box>
-          
+          </Box>  
           <ContentItem 
             content={<AiOutlineSearch fontSize="1.5rem"/>}
             action="v"
           />
       </Box>
-    </>
+      {/* <ToggleBtnGroup 
+        pt="fixed" 
+        bm="0px" 
+        l="0px" 
+        controls={{
+          value: toggleMenu,
+          exclusive: true,
+          func: (e, value) => setToggleMenu(value)
+        }} >
+        <Btn value="btn1"><AiOutlineSearch fontSize="1.5rem"/></Btn>
+        <Btn value="btn2"><AiOutlineSearch fontSize="1.5rem"/></Btn>
+        <Btn value="btn3"><AiOutlineSearch fontSize="1.5rem"/></Btn>
+      </ToggleBtnGroup> */}
+     
+      <Collapse collapsed >
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos voluptatibus odio error provident pariatur repudiandae iste, dolor, architecto maiores dolorum exercitationem vitae omnis asperiores quo cum ratione et obcaecati consequatur.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos voluptatibus odio error provident pariatur repudiandae iste, dolor, architecto maiores dolorum exercitationem vitae omnis asperiores quo cum ratione et obcaecati consequatur.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos voluptatibus odio error provident pariatur repudiandae iste, dolor, architecto maiores dolorum exercitationem vitae omnis asperiores quo cum ratione et obcaecati consequatur.</p>
+      </Collapse>
+      <Accordion title="hola" description="lorean"/>
+      <Accordion title="hola1" description="lconsectetur adipisicing elit"/>
+      <Accordion title="hola3" description="consectetur adipisicing elit"/>
+       </>
   )
 }
 export default App

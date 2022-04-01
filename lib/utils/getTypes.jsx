@@ -1,10 +1,10 @@
-import { ThemeColors02, BoxSizes as sizes } from './index'
+import { ThemeColors2, BoxSizes as sizes } from 'atomic-library-core'
 
-let colorsLighter = ThemeColors02.lighter
-let colorsLight = ThemeColors02.light
-let colorsMain = ThemeColors02.main
-let colorsDark = ThemeColors02.dark
-let colorsDarker = ThemeColors02.darker
+let colorsLighter = ThemeColors2.lighter
+let colorsLight = ThemeColors2.light
+let colorsMain = ThemeColors2.main
+let colorsDark = ThemeColors2.dark
+let colorsDarker = ThemeColors2.darker
 
 const getTypes = (type = "filled", subType = "primary", disabled, size = "md", selected) => { 
     const types = {
