@@ -3,7 +3,7 @@ import { useState } from 'react'
 import {Backdrop, Snackbar, Alert, Skeleton} from '../lib/feedBack'
 import {Btn, Checkbox} from '../lib/inputs'
 import {Box, Input} from 'atomic-library-core'
-import {Avatar, AvatarGroup, Badge, Chip, List} from '../lib/dataDisplay'
+import {Avatar, AvatarGroup, Badge, Chip, List, ContentItem} from '../lib/dataDisplay'
 import {AiOutlineSearch} from 'react-icons/ai'
 import './App.css'
 const App = () => {
@@ -47,13 +47,32 @@ const App = () => {
       </Badge>
       <Chip >hola this</Chip>
       <List 
-       fs="5rem"
+      
         elements={[
           {display: <Avatar bg="orange">Dg</Avatar>, title: 'hola', content: 'this is content', onClose: () => alert('hola'), division: true},
           {display: <AiOutlineSearch fontSize="1.5rem"/>, title: 'como estas'},
-          {display: 'hola'},
+          {title: 'list'},
         ]}
       />
+      <Box w="345px" m="2rem" flex flexWrap rounded raised c="rgba(0, 0, 0, 0.6)" >
+          <ContentItem 
+            display={<Avatar bg="orange">R</Avatar>}
+            title="Shrimp and Chorizo Paella"
+            content="September 14, 2016"
+            action=":"
+          />
+          <Box>
+            <img width="100%" src="https://mui.com/static/images/cards/paella.jpg" alt="" />
+          </Box>
+          <Box p="1rem">
+            <p>Lorem ipsum, tempore maiores. Ducimus praesentium enim sed ipsam sapiente, ipsum totam architecto consectetur animi facere, aliquid blanditiis est sint.</p>
+          </Box>
+          
+          <ContentItem 
+            content={<AiOutlineSearch fontSize="1.5rem"/>}
+            action="v"
+          />
+      </Box>
     </>
   )
 }

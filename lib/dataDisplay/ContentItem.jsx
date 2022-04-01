@@ -1,26 +1,22 @@
-import { Box, Ul, Li, Span, Paragraph } from 'atomic-library-core'
+import {Box, Span, Paragraph} from 'atomic-library-core'
 import { getTypes } from '../utils'
 import { AiOutlineClose } from 'react-icons/ai'
-
-
-const List = ({
-  elements = false,
-  divided,
-  type = 'text',
-  subType = 'secondary',
-  action,
-  disabled,
-  selected,
-  size = 'md',
-  ...rest
+const ContentItem = ({
+    type = 'text',
+    subType = 'secondary',
+    action,
+    disabled,
+    onClose,
+    selected,
+    display,
+    title,
+    content,
+    size = 'md',
+    ...rest
 }) => {
-  let style = getTypes(type, subType, disabled, size,selected)
-
-  let items = elements.map((element = false) => {
-      const {display, title, content, action, onClose, division} = element;
-      return (
-          <>
-            <Li insertStyleBefore={style} flex center m="0" p="1rem" key={title}>
+    let style = getTypes(type, subType, disabled, size,selected)
+    return (
+        <Box insertStyleBefore={style} flex center m="0" p="1rem" {...rest}>
                 {display && 
                     <Box flex center w="max-content">{display}</Box>}
                 <Box flex y="center" x="start" p="0 1rem" flexWrap m="0">
@@ -37,18 +33,7 @@ const List = ({
                             )}
                         </Box>
                     }
-            </Li>
-            {(division || divided) && <hr />}
-        </>
-      )
-
-      
-  })
-
-  return (
-    <Ul {...rest}>
-        {items}
-    </Ul>
-  )
+        </Box>
+    )
 }
-export default List
+export default ContentItem
