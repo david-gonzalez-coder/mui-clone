@@ -1,8 +1,19 @@
 import {Box} from 'atomic-library-core'
-
-const Collapse = ({children, collapsed, ...rest}) => {
+import {useRef, useEffect, useState} from 'react'
+const Collapse = ({children, collapsed, className, ...rest}) => {
+    const boxRef = useRef(null)
+    const [height, setHeight] = useState(null)
+    useEffect(() =>{
+        setHeight(boxRef.current.scrollHeight)
+    },[collapsed])
     return (
-        <Box  d={collapsed ? 'none' : 'auto'} {...rest}>
+        <Box  
+            ref={boxRef}
+            tt="height 0.3s"
+            of="hidden"
+            height="0px"
+            h={!collapsed ? `${height}px` : '0px'}
+            {...rest}>
            {children}
         </Box>
     )

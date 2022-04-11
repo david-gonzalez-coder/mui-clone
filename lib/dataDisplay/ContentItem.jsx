@@ -1,4 +1,4 @@
-import {Box, Span, Paragraph} from 'atomic-library-core'
+import {Box, Span, P} from 'atomic-library-core'
 import { getTypes } from '../utils'
 import { AiOutlineClose } from 'react-icons/ai'
 const ContentItem = ({
@@ -23,7 +23,7 @@ const ContentItem = ({
                     {title && 
                         <Span>{title}</Span>}
                     {content && 
-                        <Paragraph w="100%">{content}</Paragraph>}
+                        <P w="100%">{content}</P>}
                 </Box>
                 
                     {(action || onClose) && 

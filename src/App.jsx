@@ -6,14 +6,21 @@ import {Box, Input} from 'atomic-library-core'
 import {Avatar, AvatarGroup, Badge, Chip, List, ContentItem} from '../lib/dataDisplay'
 import {AiOutlineSearch} from 'react-icons/ai'
 import {Accordion} from '../lib/surfaces'
-import {Collapse} from '../lib/utils'
+import {Collapse, Slider,} from '../lib/utils'
+import {Navbar, Link} from '../lib/navigation'
 import './App.css'
+import '../lib/utils/MuiClone.css'
+
 const App = () => {
   const [toggle, setToggle] = useState(false)
   const [toggleMenu, setToggleMenu] = useState('btn1')
+  const [steps, setSteps] = useState(0)
   return (
     <>
-    
+    <Navbar bg="#f2f2f2" z="2" pt="sticky" location="top">
+        <a href="#">inicio</a>
+        <a href="#">inicio</a>
+      </Navbar>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti quas voluptatem blanditiis minima. Quidem, suscipit illum obcaecati voluptatibus repudiandae expedita fugiat totam doloremque, iste optio commodi voluptatum! Exercitationem, eaque placeat.</p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti quas voluptatem blanditiis minima. Quidem, suscipit illum obcaecati voluptatibus repudiandae expedita fugiat totam doloremque, iste optio commodi voluptatum! Exercitationem, eaque placeat.</p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti quas voluptatem blanditiis minima. Quidem, suscipit illum obcaecati voluptatibus repudiandae expedita fugiat totam doloremque, iste optio commodi voluptatum! Exercitationem, eaque placeat.</p>
@@ -86,14 +93,44 @@ const App = () => {
         <Btn value="btn3"><AiOutlineSearch fontSize="1.5rem"/></Btn>
       </ToggleBtnGroup> */}
      
-      <Collapse collapsed >
+      <Collapse   >
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos voluptatibus odio error provident pariatur repudiandae iste, dolor, architecto maiores dolorum exercitationem vitae omnis asperiores quo cum ratione et obcaecati consequatur.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos voluptatibus odio error provident pariatur repudiandae iste, dolor, architecto maiores dolorum exercitationem vitae omnis asperiores quo cum ratione et obcaecati consequatur.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos voluptatibus odio error provident pariatur repudiandae iste, dolor, architecto maiores dolorum exercitationem vitae omnis asperiores quo cum ratione et obcaecati consequatur.</p>
       </Collapse>
-      <Accordion title="hola" description="lorean"/>
+      <Accordion title="hola" description={<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos voluptatibus odio error provident pariatur repudiandae iste, dolor, architecto maiores dolorum exercitationem vitae omnis asperiores quo cum ratione et obcaecati consequatur.</p>} />
       <Accordion title="hola1" description="lconsectetur adipisicing elit"/>
       <Accordion title="hola3" description="consectetur adipisicing elit"/>
+      
+      <Link m="20px" type="filled">vomo</Link>
+      <Slider byPercent={100} gap="10px" column  h="300px" widthElements={100}>
+        <Box h="100px" bg="#ccc"  >1</Box>
+        <Box h="100px" bg="#ccc"  w="500px" >2</Box>
+        <Box h="100px" bg="#ccc"  w="500px" >3</Box>
+        <Box h="100px" bg="#ccc" w="500px" >4</Box>
+        <Box h="100px" bg="#ccc" w="500px" >5</Box>
+        <Box h="100px" bg="#ccc" w="500px" >6</Box>
+        <Box h="100px" bg="#ccc" w="500px" >7</Box>
+        <Box h="100px" bg="#ccc" w="500px" >8</Box>
+      </Slider>
+      <Slider gap="20px" inSections={50}  hiddenOnBorder >
+        <Box h="50px" bg="#ccc" w="50px" onClick={() => setSteps(0)} >1</Box>
+        <Box h="50px" bg="#ccc" w="50px" onClick={() => setSteps(1)} >2</Box>
+        <Box h="50px" bg="#ccc" w="50px" onClick={() => setSteps(3)} >3</Box>
+        <Box h="50px" bg="#ccc" w="50px" onClick={() => setSteps(4)} >4</Box>
+        <Box h="50px" bg="#ccc" w="50px" onClick={() => setSteps(5)} >5</Box>
+        <Box h="50px" bg="#ccc" w="50px" onClick={() => setSteps(6)} >6</Box>
+        <Box h="50px" bg="#ccc" w="50px" onClick={() => setSteps(7)} >7</Box>
+        <Box h="50px" bg="#ccc" w="50px" onClick={() => setSteps(8)} >8</Box>
+        <Box h="50px" bg="#ccc" w="50px" onClick={() => setSteps(5)} >5</Box>
+        <Box h="50px" bg="#ccc" w="50px" onClick={() => setSteps(6)} >6</Box>
+        <Box h="50px" bg="#ccc" w="50px" onClick={() => setSteps(7)} >7</Box>
+        <Box h="50px" bg="#ccc" w="50px" onClick={() => setSteps(8)} >8</Box>
+      </Slider>
+      <ToggleBtnGroup rounded controls={{value: 'left', exclusive: true}}>
+        <Btn value="left" >left</Btn>
+        <Btn value="right" >right</Btn>
+      </ToggleBtnGroup>
        </>
   )
 }

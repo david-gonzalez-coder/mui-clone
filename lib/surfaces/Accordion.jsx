@@ -1,5 +1,5 @@
 import { Box } from 'atomic-library-core'
-import { getTypes, Collapse } from '../utils'
+import { Collapse } from '../utils'
 import {ContentItem} from '../dataDisplay'
 import {useState} from 'react'
 
@@ -19,7 +19,6 @@ const Accordion = ({
 }) => {
 
 const [toggle, setToggle] = useState(true)
- 
       return (
             <Box  onClick={() => setToggle(!toggle)} {...rest} >
                 <ContentItem 
@@ -29,6 +28,7 @@ const [toggle, setToggle] = useState(true)
                 />
                 <Collapse collapsed={toggle}>
                     {description}
+                    
                 </Collapse>
             </Box>
       )
