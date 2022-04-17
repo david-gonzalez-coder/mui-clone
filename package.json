@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "styled-components": "^5.3.3",
-    "atomic-library-core": "^1.4.2",
+    "atomic-library-core": "^1.4.4",
     "react-icons": "^4.3.1"
   },
   "directories": {
