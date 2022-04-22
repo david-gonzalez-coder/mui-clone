@@ -90,7 +90,7 @@ const Slider = ({
     <Wrapper
       flex
       pt='relative'
-      flexColumn={column}
+      flowColumn={column}
       onMouseOver={() => dynamic && setOpacity('1')}
       onMouseLeave={() => dynamic && setOpacity('0')}
       {...rest}

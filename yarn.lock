@@ -1493,10 +1493,10 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
 
-atomic-library-core@^1.4.4:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/atomic-library-core/-/atomic-library-core-1.4.4.tgz#45c89fe48bf6ad3f0af4e9bbde41f9db025e9c7c"
-  integrity sha512-SE6LOXJHdsLGyIsDlYFECxEQfChROINQFKFob+IoAhwmYLUOAgSGwWP3RCzRAqySfBgS4vmC3gE8exWanyST+w==
+atomic-library-core@^1.4.7:
+  version "1.4.7"
+  resolved "https://registry.yarnpkg.com/atomic-library-core/-/atomic-library-core-1.4.7.tgz#36a4eafa900b661814357a7ba799ba62020af63a"
+  integrity sha512-9WuvFNQBzdhc5xqFjXSBdyUfUhwEBfTumg4a2mn6EBivyCQzIxazh+gLeLv1nwcP/TF3cCfB6lJCBGzEIqF7Xw==
   dependencies:
     styled-components "^5.3.3"
 

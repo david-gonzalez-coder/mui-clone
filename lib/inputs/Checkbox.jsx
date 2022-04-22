@@ -1,5 +1,5 @@
-import {Input, Label, Span, Box} from 'atomic-library-core'
-import {ThemeColors2 as colors} from 'atomic-library-core'
+import {Input, Label, Span, ThemeColors2 as colors} from 'atomic-library-core'
+
 import {AiOutlineCheck, AiOutlineLine} from 'react-icons/ai'
 import {useState} from 'react'
 

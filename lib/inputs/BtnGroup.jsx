@@ -39,9 +39,9 @@ const BtnGroup = ({children, column, columnReverse, toggle, rowReverse, rounded,
             rounded={rounded}
             fullRounded={fullRounded}
             {...rest}
-            flexRowReverse={rowReverse}
-            flexColumn={column}
-            flexColumnReverse={columnReverse}
+            flowRowReverse={rowReverse}
+            flowColumn={column}
+            flowColumnReverse={columnReverse}
         >
             {elements}
         </Box>

@@ -1,30 +1,23 @@
-import { Checkbox } from '../lib/inputs'
-import {Box} from 'atomic-library-core'
+import { Checkbox, Radio, RadioGroup } from '../lib/inputs'
+import {Box, Colors} from 'atomic-library-core'
+import Styled from 'styled-components'
 import './App.css'
 import {AiOutlineCheck, AiFillCheckCircle} from 'react-icons/ai'
+import {useState} from 'react'
 
 const App = () => {
-const state = [false, false]
+  const [valor, setValor] = useState('h')
   return (
     <>
-     
-      <Box h="100px" w="100px" bg="#ccc" myStyle={{
-        "::after": {
-          content: "''",
-          h:"10px",
-          w: '10px',
-          bg: 'red',
-          pt: 'absolute'
-        }
-        }}></Box>
-        <Box h="100px" bg="#ccc"></Box>
-
-        <Checkbox 
-        checked={state[0] && state[1]} 
-        label="adsdf"
-        
-        indeterminate={state[0] !== state[1]}
-        />
+      <Radio inputAtt={{name: 'hola', value: 'famale'}} label="famale"/>
+      <Radio inputAtt={{name: 'hola', value: 'male'}}/>
+      <Radio inputAtt={{name: 'hola'}}/>
+      <Radio inputAtt={{name: 'hola'}} checked/> <br /><br />
+      <RadioGroup value={valor} name="hola" onChange={(e)=>{setValor(e.target.value)}}>
+        <Radio value="h" label="hombre" colorChecked="orange" flowColumnReverse checkStyle={{w: '100px'}}/>
+        <Radio value="f" label="hombre"/>
+        <Radio value="g" label="hombre"/>
+      </RadioGroup>
     </>
   )
 }
