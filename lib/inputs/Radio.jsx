@@ -83,7 +83,7 @@ const Radio = ({
             />
         }
         
-        <Input type='radio' d="none"  value={value} checked={checked} name={name} onChange={onChange} {...inputAtt} />
+        <Input type='radio'  d="none" value={value} checked={checked} name={name} onChange={onChange} {...inputAtt} />
         {label && <Span c={disabled && colors.main.disabled}>{label}</Span>}
       </Label>
     </>
