@@ -1,6 +1,6 @@
 import {Input, Label, Span, ThemeColors2 as Colors} from 'atomic-library-core'
 import {useState} from 'react'
-const Switch = ({checked, subType="primary", disabled, onChange = () => {}, label, ...rest}) => {
+const Switch = ({inputType="checkbox",checked, subType="primary", disabled, onChange = () => {}, label, ...rest}) => {
     const [check, setCheck] = useState(false)
 
     return (
@@ -31,7 +31,7 @@ const Switch = ({checked, subType="primary", disabled, onChange = () => {}, labe
             {...rest}
         >
             <Input 
-                type="checkbox"
+                type={inputType}
                 d="none"
                 disabled={disabled}
                 onChange={(e)=> {

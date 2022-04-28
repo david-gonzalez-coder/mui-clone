@@ -6,6 +6,7 @@ import {useState} from 'react'
 
 
 const Checkbox = ({
+  inputType="checkbox",
   checked = false,
   label,
   colorChecked = colors.main.primary,
@@ -84,7 +85,7 @@ const Checkbox = ({
         </Span>
         }
         
-        <Input type='checkbox' d='none' checked={check} onChange={callback} />
+        <Input type={inputType} d='none' checked={check} onChange={callback} />
         {label && <Span c={disabled && colors.main.disabled}>{label}</Span>}
       </Label>
     </>

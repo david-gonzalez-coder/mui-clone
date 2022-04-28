@@ -1,6 +1,7 @@
 import {Input, Label, Span, ThemeColors2 as colors} from 'atomic-library-core'
 
 const Radio = ({
+  inputType="radio",
   checked = false,
   label,
   value,
@@ -83,7 +84,7 @@ const Radio = ({
             />
         }
         
-        <Input type='radio'  d="none" value={value} checked={checked} name={name} onChange={onChange} {...inputAtt} />
+        <Input type={inputType}  d="none" value={value} checked={checked} name={name} onChange={onChange} {...inputAtt} />
         {label && <Span c={disabled && colors.main.disabled}>{label}</Span>}
       </Label>
     </>

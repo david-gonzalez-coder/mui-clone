@@ -9,7 +9,7 @@ import {
 } from 'atomic-library-core'
 import { useState, useRef, useEffect } from 'react'
 
-const Slide = ({defaultValue = 0, marks, min = 0, max = 100, step = 1, disabled, onChange = () => {}, subType="primary"}) => {
+const Range = ({inputType="range",defaultValue = 0, marks, min = 0, max = 100, step = 1, disabled, onChange = () => {}, subType="primary"}) => {
     const [inputValue, setInputValue] = useState(defaultValue)
     const [marksAmount, setMarksAmount] = useState([])
     const [marksProgressAmount, setMarksProgressAmount] = useState([])
@@ -84,7 +84,7 @@ const Slide = ({defaultValue = 0, marks, min = 0, max = 100, step = 1, disabled,
            
             </Progress>
             <Input 
-                type="range"
+                type={inputType}
                 onChange={(e)=> {
                     setInputValue(e.target.value);
                     onChange(e)
@@ -106,7 +106,7 @@ const Slide = ({defaultValue = 0, marks, min = 0, max = 100, step = 1, disabled,
                          -webkit-appearance: none;
                         height: 20px;
                         width: 20px;
-                        background: ${disabled ? Colors.main.disabled : Colors.main.primary};
+                        background: ${disabled ? Colors.main.disabled : Colors.main[subType]};
                         border-radius: 10px;
     
                         box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 
@@ -118,4 +118,4 @@ const Slide = ({defaultValue = 0, marks, min = 0, max = 100, step = 1, disabled,
         </Wrapper>
     )
 }
-export default Slide
+export default Range
