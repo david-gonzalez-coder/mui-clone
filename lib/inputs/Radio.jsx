@@ -1,93 +1,96 @@
-import {Input, Label, Span, ThemeColors2 as colors} from 'atomic-library-core'
+import { createElement } from 'react'
+import { IoMdRadioButtonOff, IoMdRadioButtonOn } from 'react-icons/io'
+import { useState, useEffect } from 'react'
+import * as components from 'atomic-library-core'
+import Btn from './Btn'
 
-const Radio = ({
-  inputType="radio",
-  checked = false,
-  label,
-  value,
-  inputAtt,
-  colorChecked = colors.main.primary,
-  onChange = () => {},
-  disabled,
+const { Input, Label, Span, ThemeColors2 } = components
+const COLORS = ThemeColors2
+const Checkbox = ({
+  component = 'Label',
+  inputType = 'radio',
+  colorCheck,
   icon,
-  name,
   checkedIcon,
-  checkStyle,
+  indeterminateIcon,
+  checked,
+  defaultChecked = false,
+  indeterminate,
+  disabled,
+  children,
+  subType = 'primary',
+  label,
+  name,
+  value,
+  inputProps,
+  onChange = () => {},
   ...rest
 }) => {
+  const [check, setCheck] = useState(defaultChecked)
+  const changeState = (e) => {
+    if (checked === undefined) {
+      setCheck(!check)
+      onChange(e)
+    } else {
+      onChange(e)
+    }
+  }
+  useEffect(() => {
+    if (checked !== undefined) {
+      setCheck(checked)
+    }
+  }, [checked])
 
-  return (
+  if (!icon || typeof icon === 'boolean') {
+    icon = (
+      <IoMdRadioButtonOff
+        fontSize='1.5rem'
+        color={disabled ? COLORS.main.disabled : COLORS.main.secondary}
+      />
+    )
+  }
+  if (!checkedIcon || typeof checkedIcon === 'boolean') {
+    checkedIcon = (
+      <IoMdRadioButtonOn
+        fontSize='1.5rem'
+        color={
+          disabled
+            ? COLORS.main.disabled
+            : colorCheck
+            ? colorCheck
+            : COLORS.main[subType]
+        }
+      />
+    )
+  }
+
+  return createElement(
+    components[component],
+    {
+      insertStyleBefore:"-webkit-tap-highlight-color: rgba(0, 0, 0, 0);",
+      inlineFlex: true,
+      center: true,
+      cursor: disabled ? 'default' : 'pointer',
+      color: disabled ? COLORS.main.disabled : 'auto',
+      ...rest,
+    },
     <>
-      <Label
-      m="10px"
-        inlineFlex
-        y='center'
-        cursor={disabled ? 'default' : 'pointer'}
-        {...rest}
-      > 
-        {
-            (icon && !checked) && 
-                <Span 
-                inlineFlex
-                y='center'
-                jc='center'
-                w='18px'
-                h='18px'>{icon}</Span>
-        }
-        {
-            (checkedIcon && checked) && 
-                <Span 
-                inlineFlex
-                y='center'
-                jc='center'
-                w='18px'
-                h='18px'>{checkedIcon}</Span>
-        }
-        {
-            (!icon || !checkedIcon) &&
-            <Span
-              inlineFlex
-              y='center'
-              jc='center'
-              w='18px'
-              h='18px'
-              b={`2px solid ${
-                disabled
-                  ? colors.light.disabled
-                  : checked
-                  ? colorChecked
-                  : colors.dark.secondary
-              }`}
-              br='10px'
-              bg="none"
-              mR='10px'
-              pt="relative"
-              myStyle={{
-                '::after': {
-                  content: "''",
-                  w: "8px",
-                  h:"8px",
-                  br: "8px",
-                  bg: disabled
-                  ? colors.light.disabled
-                  : checked
-                  ? colorChecked
-                  : colors.dark.secondary,
-                  pt: "absolute",
-                  l: 'calc(50% - 4px)',
-                  t: 'calc(50% - 4px)',
-                  tf: `scale(${checked ? '1' : '0'})`,
-                  tt: '.15s'
-                }
-              }}
-              superStyle={checkStyle}
-            />
-        }
-        
-        <Input type={inputType}  d="none" value={value} checked={checked} name={name} onChange={onChange} {...inputAtt} />
-        {label && <Span c={disabled && colors.main.disabled}>{label}</Span>}
-      </Label>
+      <Btn type='icon' disabled={disabled} component='Span'>
+        {check ? checkedIcon : icon}
+      </Btn>
+      <Input
+        d="none"
+        value={value}
+        checked={checked}
+        name={name}
+        onChange={onChange}
+        disabled={disabled}
+        type={inputType}
+        {...inputProps}
+      />
+      {label && <Span>{label}</Span>}
+      {children && <Span>{children}</Span>}
     </>
   )
 }
-export default Radio
+export default Checkbox

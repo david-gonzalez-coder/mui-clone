@@ -1,6 +1,6 @@
 {
   "name": "mui-clone",
-  "version": "1.4.4",
+  "version": "1.7.8",
   "description": "this is a recreation of material ui using atomic-library-core",
   "keywords": [
     "react",
@@ -42,9 +42,9 @@
     "vite": "^2.7.2"
   },
   "dependencies": {
-    "styled-components": "^5.3.3",
-    "atomic-library-core": "^1.4.7",
-    "react-icons": "^4.3.1"
+    "styled-components": "5.3.3",
+    "atomic-library-core": "1.4.7",
+    "react-icons": "4.3.1"
   },
   "directories": {
     "lib": "lib"

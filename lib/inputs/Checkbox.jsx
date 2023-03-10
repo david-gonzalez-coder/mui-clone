@@ -1,94 +1,80 @@
-import {Input, Label, Span, ThemeColors2 as colors} from 'atomic-library-core'
+import { createElement } from 'react'
+import {MdCheckBox, MdCheckBoxOutlineBlank, MdIndeterminateCheckBox} from 'react-icons/md'
+import {useState, useEffect} from 'react'
+import * as components from 'atomic-library-core'
+import Btn from './Btn'
 
-import {AiOutlineCheck, AiOutlineLine} from 'react-icons/ai'
-import {useState} from 'react'
-
-
-
+const {Input, Label, Span, ThemeColors2} = components
+const COLORS = ThemeColors2
 const Checkbox = ({
-  inputType="checkbox",
-  checked = false,
-  label,
-  colorChecked = colors.main.primary,
-  disabled,
-  onChange = () => {},
+  component="Label",
+  inputType = 'checkbox',
+  colorCheck,
   icon,
   checkedIcon,
+  indeterminateIcon,
+  checked,
+  defaultChecked = false,
   indeterminate,
-  checkStyle,
+  disabled,
+  children,
+  subType = 'primary',
+  label,
+  inputProps,
+  onChange = () => {},
   ...rest
 }) => {
-  const [check, setCheck] = useState(checked)
-  const callback = (e) => {
-    if (!disabled) {
+  const [check, setCheck] = useState(defaultChecked)
+  const changeState = (e) => {
+    if(checked === undefined) {
       setCheck(!check)
+      onChange(e)
+    }else {
       onChange(e)
     }
   }
+  useEffect(() => {
+    if(checked !== undefined) {
+      setCheck(checked)
+    }
+  }, [checked])
 
+  if(!icon || typeof icon === 'boolean') {
+    icon = <MdCheckBoxOutlineBlank fontSize="1.5rem" color={disabled ? COLORS.main.disabled : COLORS.main.secondary} />
+  }
+  if(!checkedIcon|| typeof checkedIcon === 'boolean'){
+    checkedIcon = <MdCheckBox fontSize="1.5rem" color={disabled ? COLORS.main.disabled : colorCheck ? colorCheck : COLORS.main[subType]}/>
+  }
+  if(!indeterminateIcon || typeof indeterminateIcon === 'boolean'){
+    indeterminateIcon = <MdIndeterminateCheckBox fontSize="1.5rem" color={disabled ? COLORS.main.disabled : colorCheck ? colorCheck : COLORS.main[subType]}/>
+  } 
   return (
-    <>
-      <Label
-        inlineFlex
-        y='center'
-        cursor={disabled ? 'default' : 'pointer'}
-        {...rest}
-      > 
-        {
-            (icon && !check) && 
-                <Span 
-                inlineFlex
-                y='center'
-                jc='center'
-                w='18px'
-                h='18px'>{icon}</Span>
-        }
-        {
-            (checkedIcon && check) && 
-                <Span 
-                inlineFlex
-                y='center'
-                jc='center'
-                w='18px'
-                h='18px'>{checkedIcon}</Span>
-        }
-        {
-            (!icon || !checkedIcon) &&
-            <Span
-          inlineFlex
-          y='center'
-          jc='center'
-          w='18px'
-          h='18px'
-          b={`2px solid ${
-            disabled
-              ? colors.light.disabled
-              : check
-              ? colorChecked
-              : colors.dark.secondary
-          }`}
-          br='2px'
-          bg={
-            check ? (disabled ? colors.light.disabled : colorChecked) : 'none'
-          }
-          mR='10px'
-          c='#fff'
-          myStyle={checkStyle}
-        >
-            {indeterminate ? 
-            <AiOutlineLine /> :
-            <AiOutlineCheck
-                style={{ visibility: check ? 'visible' : 'hidden' }}
-            />
-        }
-          
-        </Span>
-        }
-        
-        <Input type={inputType} d='none' checked={check} onChange={callback} />
-        {label && <Span c={disabled && colors.main.disabled}>{label}</Span>}
-      </Label>
-    </>
+    createElement(
+      components[component],
+      {
+        insertStyleBefore:"-webkit-tap-highlight-color: rgba(0, 0, 0, 0);",
+        inlineFlex: true,
+        center: true,
+        cursor: disabled ? 'default' : 'pointer',
+        color: disabled ? COLORS.main.disabled : 'auto',
+        ...rest
+      },
+      <>
+      <Btn type="icon" disabled={disabled} component="Span" >
+        {indeterminate ? indeterminateIcon : check ? checkedIcon  : icon}
+      </Btn>
+      <Input
+        d="none"
+        checked={check}
+        disabled={disabled}
+        type={inputType}
+        onChange={changeState}
+        {...inputProps}
+      />
+      {label && <Span>{label}</Span>}
+      {children && <Span>{children}</Span>}
+      </>
+    )
   )
 }
 export default Checkbox

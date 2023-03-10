@@ -1,9 +1,9 @@
-import { Box } from 'atomic-library-core'
 import { Collapse } from '../utils'
 import {ContentItem} from '../dataDisplay'
-import {useState} from 'react'
-
+import {useState, createElement} from 'react'
+import * as components from 'atomic-library-core'
 const Accordion = ({
+    component="Box",
   type = 'text',
   subType = 'secondary',
   action,
@@ -20,7 +20,13 @@ const Accordion = ({
 
 const [toggle, setToggle] = useState(true)
       return (
-            <Box  onClick={() => setToggle(!toggle)} {...rest} >
+          createElement(
+            components[component],
+            {
+                onClick: () => setToggle(!toggle),
+                ...rest
+            },
+            <>
                 <ContentItem 
                     display={display}
                     title={title}
@@ -30,7 +36,8 @@ const [toggle, setToggle] = useState(true)
                     {description}
                     
                 </Collapse>
-            </Box>
+            </>
+          )
       )
 
 }

@@ -1,42 +1,27 @@
-import { Box, Span } from 'atomic-library-core'
-import { getTypes } from '../utils'
-import { AiOutlineClose } from 'react-icons/ai'
-
-
+import ContentItem from './ContentItem'
+import { ThemeColors2 as Colors } from 'atomic-library-core'
 const chip = ({
   children,
   type = 'ghost',
-  subType = 'primary',
-  icon,
-  iconStyle,
-  action,
-  disabled,
-  onClose,
-  selected,
-  avatar,
-  size = 'md',
+  subType = 'secondary',
   ...rest
 }) => {
-  let style = getTypes(type, subType, disabled, size="sm",selected)
-
   return (
-    <Box insertStyleBefore={style} w='max-content' br="100px" flex y="center" gap='10px' {...rest}>
-        {icon && 
-            <Box m='0' w='max-content'  of="hidden">
-                {icon}
-            </Box>
-        }
-        {avatar && avatar}
-      <Span>{children}</Span>
-      {(action || onClose) &&
-        <Box m='0' w='max-content' >
-            {action  ?  action : (
-                onClose && <AiOutlineClose onClick={onClose} />
-            )}
-        </Box>
-      }
-      
-    </Box>
+    <ContentItem
+      userSelect='none'
+      onCloseStyle={{
+        bg: Colors.light[subType],
+        ':hover': { bg: Colors.light[subType] },
+        p: '2px', 'svg':{fs: '1rem'}, c: Colors.darker[subType] 
+      }}
+      title={children}
+      type={type}
+      fullRounded
+      w='max-content'
+      p='5px'
+      subType={subType}
+      {...rest}
+    />
   )
 }
 export default chip

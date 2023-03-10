@@ -1,7 +1,7 @@
 import {BtnGroup} from './index'
-import {Children, cloneElement} from 'react'
+import {Children, cloneElement, createElement} from 'react'
 
-const ToggleBtnGroup = ({children, controls = false, ...rest}) => {
+const ToggleBtnGroup = ({component="Box", children, controls = false, ...rest}) => {
     let elements = Children.toArray(children)
      elements = elements.map((element) => 
         cloneElement(element, {
@@ -17,7 +17,7 @@ const ToggleBtnGroup = ({children, controls = false, ...rest}) => {
         })
     )
     return (
-        <BtnGroup {...rest}>
+        <BtnGroup component={component} {...rest}>
             {elements}
         </BtnGroup>
     )

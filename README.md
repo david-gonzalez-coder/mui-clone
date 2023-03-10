@@ -1,7 +1,10 @@
 # Mui Clone
 
-this is a "clone" of material ui using atomic-library-core.
+this is a "clone" of material ui using [atomic-library-core.](https://atomic-library.com/)
 it's a recreation of the most components
+
+
+## differences
 
 in this package you need to replace "variant" with "type" and "color" with "subType".
 for instance  
@@ -30,14 +33,85 @@ for instance
     <li>dark</li>
 </ul>
 
-in the following tables I expose information about the components with the categories: component, status and description.
+
+Note: if the component is an input, you can use inputType to set the type of the input
+
+<p>Also, when using <code>component</code> prop, you need to use capitalize, since the component uses atomic-library-core components. for  example:</p>
+
+```jsx
+<Btn component="H1" >click</Btn>
+//instead of using
+<Btn component="h1" >click</Btn>
+//or
+<Avatar component="Button" >click</Avatar>
+//instead of using
+<Avatar component="button" >click</Avatar>
+```
+## Examples
+```jsx
+import { Btn, BtnGroup, Checkbox, ...rest } from "mui-clone"
+```
+
+```jsx
+
+    <Btn>default</Btn>
+    <Btn type='filled' subType='primary'>Click here</Btn>
+    <Btn type='ghost' subType='success'>Click here</Btn>
+    <Btn type='smooth' subType='danger'>Click here</Btn>
+    <Btn type='text' subType='secondary'>Click here</Btn>
+
+    <BtnGroup>
+        <Btn>Click here</Btn>
+        <Btn type='ghost' subType='success'>
+            Click here
+        </Btn>
+        <Btn type='smooth' subType='danger'>
+            Click here
+        </Btn>
+        <Btn type='text' subType='secondary'>
+            Click here
+        </Btn>
+    </BtnGroup>
+    <BtnGroup fullRounded mT='10px' type='text' subType='success' >
+        <Btn>Click here</Btn>
+        <Btn>Click here</Btn>
+        <Btn>Click here</Btn>
+    </BtnGroup>
+
+    <Checkbox />
+    <Checkbox defaultChecked />
+    <br />
+    <Checkbox disabled />
+    <Checkbox disabled checked />
+    <br />
+    <Checkbox label='label' />
+    <Checkbox>label</Checkbox>
+    <br />
+    <Checkbox subType='success' />
+    <Checkbox subType='danger' />
+    <br />
+    <Checkbox colorCheck='orange' />
+    <Checkbox colorCheck='brown' />
+    <br />
+    <Checkbox flowRowReverse>Terms</Checkbox>
+
+    <RadioGroup
+        value={radioValue}
+        onChange={(e) => setRadioValue(e.target.value)}
+        subType='success'
+    >
+        <Radio value='label 1' label='label 1' />
+        <Radio value='label 2'>label 2</Radio>
+    </RadioGroup>
+```
+## Status of components
+
+in the following tables i expose information about the components with the categories: component, status and description.
 
 Note: although many of them have the status "done", this being the first version, the components are not perfect and with some missing functionalities.
 
-Note: if the component is a input, you can use inputType to set the type of the input
+Note: the "not necessary" state means the component can be easily recreated by atomic-library-core components
 
-## components
-it
 ### Inputs
 <table>
     <tr>
@@ -53,22 +127,22 @@ it
     <tr>
         <td>Button</td>
         <td>replaced</td>
-        <td>this component was replaced bt Btn</td>
+        <td>this component was replaced with `Btn`</td>
     </tr>
     <tr>
         <td>Btn</td>
         <td>done</td>
-        <td>this is the replacement for Button. This component return directly a Button element from atomic-library-core</td>
+        <td>this is the replacement for `Button`. This component return directly a `Button` element from atomic-library-core</td>
     </tr>
     <tr>
         <td>ButtonGroup</td>
         <td>replaced</td>
-        <td>this component was replaced bt BtnGroup</td>
+        <td>this component was replaced with `BtnGroup`</td>
     </tr>
      <tr>
         <td>BtnGroup</td>
         <td>done</td>
-        <td>this is the replacement for ButtonGroup</td>
+        <td>this is the replacement for `ButtonGroup`</td>
     </tr>
     <tr>
         <td>Checkbox</td>
@@ -78,7 +152,7 @@ it
     <tr>
         <td>Fab floating action button</td>
         <td>not necessary</td>
-        <td> this component is not necessary since this behavior can be easily recreated by the atomic-library-core components.</td>
+        <td> .</td>
     </tr>
     <tr>
         <td>Radio</td>
@@ -133,11 +207,6 @@ it
     <tr>
         <td>Avatar</td>
         <td>done</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
         <td></td>
     </tr>
     <tr>
@@ -299,7 +368,7 @@ it
         <td>not yet</td>
         <td></td>
     </tr>
-<table>
+</table>
 
 ### layout
 

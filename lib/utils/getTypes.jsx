@@ -1,66 +1,104 @@
+// this function generate difference styles for the components
+
 import { ThemeColors2, BoxSizes as sizes } from 'atomic-library-core'
 
-let colorsLighter = ThemeColors2.lighter
-let colorsLight = ThemeColors2.light
-let colorsMain = ThemeColors2.main
-let colorsDark = ThemeColors2.dark
-let colorsDarker = ThemeColors2.darker
+const { lighter, light, main, dark, darker } = ThemeColors2
 
-const getTypes = (type = "filled", subType = "primary", disabled, size = "md", selected) => { 
-    const types = {
-        filled: disabled ? `
-                background: ${colorsLighter.disabled};
-                color: ${colorsMain.disabled};
-                cursor: no-drop; 
-                ` : `
-                background: ${selected ?  colorsDark[subType] : colorsMain[subType] }; 
-                color: #fff;
-                :hover{
-                    ${selected ? `background: ${colorsDarker[subType]}` :
-                    `background: ${colorsDark[subType]}`};
-                }`,
-        ghost: `
-            background: ${disabled ?  'none' : selected ? colorsLighter[subType] : 'none'};
-            border: 1px solid ${disabled ? colorsLight.disabled : colorsMain[subType]};
-            color:${disabled ? colorsDark.disabled : colorsMain[subType]};
-            :hover{
-                ${disabled ? 'cursor: no-drop;' : 
-                    selected ? `background: ${colorsLight[subType]}; color: ${colorsDarker[subType]} ` : 
-                    `background: ${colorsLighter[subType]}`};
-            }
-        `, 
-        text: `
-            background: ${selected ? colorsLighter[subType] : 'none'};
-            color: ${disabled ? colorsMain.disabled : colorsMain[subType]};
-            :hover{
-                ${disabled ? 'cursor: no-drop;' : selected ? `background: ${colorsLight[subType]}; color: ${colorsDarker[subType]} ` : 
-                `background: ${colorsLighter[subType]} `
+let iconPadding = {
+  sm: '6px',
+  md: '8px',
+  lg: '10px',
+}
+
+const getTypes = ({
+  type = 'filled',
+  subType = 'primary',
+  disabled,
+  size = 'md',
+  selected,
+  cursor = 'pointer',
+  userSelect = 'auto',
+}) => {
+    
+  const types = {
+    filled: `
+        background: ${
+          disabled ? lighter.disabled : selected ? dark[subType] : main[subType]
+        }; 
+        color: ${disabled ? main.disabled : '#fff'};
+        :hover{
+            background: ${selected ? darker[subType] : dark[subType]}
+        }`,
+    ghost: `
+            background: ${
+              disabled ? 'none' : selected ? lighter[subType] : 'none'
             };
+            border: 1px solid ${disabled ? light.disabled : main[subType]};
+            color:${disabled ? dark.disabled : main[subType]};
+            :hover{
+                ${
+                  disabled
+                    ? ''
+                    : selected
+                    ? `background: ${light[subType]}; color: ${darker[subType]} `
+                    : `background: ${lighter[subType]}`
+                };
             }
         `,
-        smooth: `
-            background: ${disabled ? colorsLighter.disabled : selected ? colorsLight[subType] : colorsLighter[subType]};
-            color: ${disabled ? colorsMain.disabled : colorsMain[subType]};
+    text: `
+            background: ${selected ? lighter[subType] : 'none'};
+            color: ${disabled ? main.disabled : main[subType]};
             :hover{
-                ${disabled ? 'cursor: no-drop;' : `background: ${colorsLighter[subType]}`};
+                ${
+                  disabled
+                    ? ';'
+                    : selected
+                    ? `background: ${light[subType]}; color: ${darker[subType]} `
+                    : `background: ${lighter[subType]} `
+                };
             }
-        `
-    }
+        `,
+    smooth: `
+            background: ${
+              disabled
+                ? lighter.disabled
+                : selected
+                ? light[subType]
+                : lighter[subType]
+            };
+            color: ${disabled ? main.disabled : dark[subType]};
+            :hover{
+                ${!disabled ? '' : `background: ${lighter[subType]}`};
+            }
+        `,
+    icon: `
+            background: none;
+            aspect-ratio: 1 / 1;
+            border-radius: 100px;
+            transition: background .2s;
+            :hover{
+                transition: background .2s;
+                background: ${disabled ? 'none' : '#F2F4F4'};
+            }
+        `,
+  }
 
-    return `
-    cursor: pointer;
+  return ` 
+    cursor: ${disabled ? 'default' : cursor};
+    user-select: ${disabled ? 'none' : userSelect};
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
     transition: 0.1s;
     border: none;
     :hover{transition: 0.1s}
     :active{transition: 0.1s}
-
-    ${size && `
-    font-size:${sizes[size + 'Font']};
-    padding:${sizes[size + 'Padding']};
-    margin:${sizes[size + 'Margin']};`
+    ${size &&
+    `
+        font-size:${sizes[size + 'Font']};
+        padding:${type === 'icon' ? iconPadding[size] : sizes[size + 'Padding']};
+        margin:${type === 'icon' ? '0' : sizes[size + 'Margin']};
+    `
     }
     ${types[type]}
-`}
-
-
+`
+}
 export default getTypes

@@ -1,11 +1,10 @@
-import {Children, cloneElement} from 'react'
-import {Box} from 'atomic-library-core '
-
-const BtnGroup = ({children, column, columnReverse, toggle, rowReverse, rounded, fullRounded, type, subType, size, row,...rest}) => {
+import {Children, cloneElement, createElement} from 'react'
+import * as components from 'atomic-library-core'
+const BtnGroup = ({flowColumn, flowColumnReverse, flowRowReverse, flowRow, component="Box",children, toggle, rounded, fullRounded, type, subType, size,...rest}) => {
     let elements = Children.toArray(children)
-    let round = rounded ? 'rounded' : fullRounded ? 'fullRounded' : 'default'
-    let first = row ? 'Fourth' : rowReverse ? 'Third' : column ? 'First' : columnReverse ? 'Second' : 'Fourth'
-    let last = row ? 'Third' : rowReverse ? 'Fourth' : column ? 'Second' : columnReverse ? 'First' : 'Third'
+    let round = !fullRounded ? 'rounded' : 'fullRounded'
+    let first = flowRow ? 'Fourth' : flowRowReverse ? 'Third' : flowColumn ? 'First' : flowColumnReverse ? 'Second' : 'Fourth'
+    let last = flowRow ? 'Third' : flowRowReverse ? 'Fourth' : flowColumn ? 'Second' : flowColumnReverse ? 'First' : 'Third'
     const styles = {
         roundedFirst: '5px 5px 0 0', 
         roundedSecond: '0 0 5px 5px', 
@@ -27,24 +26,27 @@ const BtnGroup = ({children, column, columnReverse, toggle, rowReverse, rounded,
                 br: styles[`${round}${first}`],m: '0px', type, subType, size, ...elements[0].props
             })]
             .concat(
-                elements.slice(1, -1).map(element => cloneElement(element , {m: '0px', type, subType, size, ...element.props })),
+                elements.slice(1, -1).map(element => cloneElement(element , {m: '0px', br: '0', type, subType, size, ...element.props })),
                 cloneElement(lastElement , {br: styles[`${round}${last}`], m: '0px', type, subType, size, ...lastElement.props })
             )
     }
     return (
-        <Box 
-            inlineFlex 
-            flexWrap 
-            w="auto"
-            rounded={rounded}
-            fullRounded={fullRounded}
-            {...rest}
-            flowRowReverse={rowReverse}
-            flowColumn={column}
-            flowColumnReverse={columnReverse}
-        >
-            {elements}
-        </Box>
+        createElement(
+            components[component],
+            {
+                inlineFlex: true, 
+                flexWrap: true, 
+                w:"auto",
+                rounded: rounded,
+                flowColumn: flowColumn,
+                flowColumnReverse: flowColumnReverse,
+                flowRow: flowRow,
+                flowRowReverse: flowRowReverse,  
+                ...rest,
+            },
+            elements
+        )
+
     )
 }
 export default BtnGroup

@@ -1,11 +1,15 @@
-import { Box as Wrapper, Box as ScrollBox, Box as Content, Box, AtomicContext } from 'atomic-library-core'
 import {
   MdArrowBackIosNew as Left,
   MdArrowForwardIos as Right,
 } from 'react-icons/md'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, createElement } from 'react'
+import * as components from 'atomic-library-core'
 
+const { Box, AtomicContext } = components
+const Content = Box
+const ScrollBox = Box
 const Slider = ({
+  component="Box",
   children,
   gap,
   byPixels,
@@ -87,15 +91,18 @@ const Slider = ({
   }
 
   return (
-    <Wrapper
-      flex
-      pt='relative'
-      flowColumn={column}
-      onMouseOver={() => dynamic && setOpacity('1')}
-      onMouseLeave={() => dynamic && setOpacity('0')}
-      {...rest}
-    >
-      {((ISTOUCH && hiddenOnTouch) || !ISTOUCH) && (
+    createElement(
+      components[component],
+      {
+        flex: true,
+        pt: 'relative',
+        flowColumn: column,
+        onMouseOver: () => dynamic && setOpacity('1'),
+        onMouseLeave: () => dynamic && setOpacity('0'),
+        ...rest
+      },
+      <>
+        {((ISTOUCH && hiddenOnTouch) || !ISTOUCH) && (
         <Box {...CONTROLSPROPS}>
           <Left
             onClick={toLeft}
@@ -111,7 +118,7 @@ const Slider = ({
         myStyle={{
           ofX: column ? 'auto' : 'scroll',
           ofY: column ? 'scroll' : 'auto',
-        // '::-webkit-scrollbar': { d: 'none' },
+        '::-webkit-scrollbar': { d: 'none' },
         scrollBehavior: 'smooth'}}
         ref={scrollBoxRef}
       >
@@ -134,7 +141,8 @@ const Slider = ({
           />
         </Box>
       )}
-    </Wrapper>
+      </>
+    )
   )
 }
 export default Slider

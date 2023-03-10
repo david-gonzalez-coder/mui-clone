@@ -1,5 +1,7 @@
-import {Header, Nav, useCompContext}  from 'atomic-library-core'
+import { createElement } from 'react'
+import * as components from 'atomic-library-core'
 
+const {Header, Nav, useCompContext} = components
 
 const headerStyles = {
     top : "width: 100%; height: 80px; top: 0; aling-items: center;",
@@ -13,27 +15,31 @@ const navStyles = {
     right : "flex-direction: column; max-height: 800px;",
     left : "flex-direction: column; max-height: 800px;"
 }
-const Navbar = ({children, location, header, navStyle, position, ...rest}) => {
+const Navbar = ({component="Header",children, location, headerStyle, navStyle, position, ...rest}) => {
     const {...props} = useCompContext() || false
     return (
-        <Header
-            insertStyleBefore={headerStyles[location || 'top'] + ".active {font-weight: 500;}"}
-            myStyle={{pt: position, m: '0px'}}
-            superStyle={header}
-            {...props}
-            {...rest}
-        >
-            <Nav
-                flex
-                y="center"
-                x="space-between"
-                insertStyleBefore={navStyles[location || 'top']}
-                myStyle={{ h: '100%', w: '100%', m: 'auto', p: '10px' }}
-                superStyle={navStyle}
-            >
-                {children}
-            </Nav>
-        </Header>
+        createElement(
+            components[component],
+            {
+                insertStyleBefore: headerStyles[location || 'top'] + ".active {font-weight: 500;}",
+                myStyle: {pt: position, m: '0px'},
+                superStyle: headerStyle,
+                ...props,
+                ...rest,
+            },
+            <>
+                <Nav
+                    flex
+                    y="center"
+                    x="space-between"
+                    insertStyleBefore={navStyles[location || 'top']}
+                    myStyle={{ h: '100%', w: '100%', m: 'auto', p: '10px' }}
+                    superStyle={navStyle}
+                >
+                    {children}
+                </Nav>
+            </>
+        )
     )
 }
 export default Navbar
